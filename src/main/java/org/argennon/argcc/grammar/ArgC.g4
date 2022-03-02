@@ -54,28 +54,12 @@ primaryExpression
     |   Constant
     |   StringLiteral+
     |   '(' expression ')'
-    |   genericSelection
-    |   '__extension__'? '(' compoundStatement ')' // Blocks (GCC extension)
-    |   '__builtin_va_arg' '(' unaryExpression ',' typeName ')'
-    |   '__builtin_offsetof' '(' typeName ',' unaryExpression ')'
-    ;
-
-genericSelection
-    :   '_Generic' '(' assignmentExpression ',' genericAssocList ')'
-    ;
-
-genericAssocList
-    :   genericAssociation (',' genericAssociation)*
-    ;
-
-genericAssociation
-    :   (typeName | 'default') ':' assignmentExpression
     ;
 
 postfixExpression
     :
     (   primaryExpression
-    |   '__extension__'? '(' typeName ')' '{' initializerList ','? '}'
+    |   '(' typeName ')' '{' initializerList ','? '}'
     )
     ('[' expression ']'
     | '(' argumentExpressionList? ')'
@@ -92,24 +76,55 @@ unaryExpression
     :
     ('++' |  '--' |  'sizeof')*
     (postfixExpression
-    |   unaryOperator castExpression
-    |   ('sizeof' | '_Alignof') '(' typeName ')'
+    |   unaryOperator simpleExpression
+    |   ('sizeof') '(' typeName ')'
     |   '&&' Identifier // GCC extension address of label
     )
     ;
 
 unaryOperator
-    :   '&' | '*' | '+' | '-' | '~' | '!'
+    :   '+' | '-' | '~' | '!'
     ;
+/*
+expression
+    : primary
+    | expression bop='.'
+      (
+         identifier
+       | methodCall
+       | explicitGenericInvocation
+      )
+    | expression '[' expression ']'
+    | methodCall
+    | '(' annotation* typeType ('&' typeType)* ')' expression
+    | expression postfix=('++' | '--')
+    | prefix=('+'|'-'|'++'|'--') expression
+    | prefix=('~'|'!') expression
+    | expression bop=('*'|'/'|'%') expression
+    | expression bop=('+'|'-') expression
+    | expression ('<' '<' | '>' '>' '>' | '>' '>') expression
+    | expression bop=('<=' | '>=' | '>' | '<') expression
+    | expression bop=('==' | '!=') expression
+    | expression bop='&' expression
+    | expression bop='^' expression
+    | expression bop='|' expression
+    | expression bop='&&' expression
+    | expression bop='||' expression
+    | <assoc=right> expression bop='?' expression ':' expression
+    | <assoc=right> expression
+      bop=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=')
+      expression
+    ;
+*/
 
-castExpression
-    :   '__extension__'? '(' typeName ')' castExpression
-    |   unaryExpression
+
+simpleExpression
+    :   unaryExpression
     |   DigitSequence // for
     ;
 
 multiplicativeExpression
-    :   castExpression (('*'|'/'|'%') castExpression)*
+    :   simpleExpression (('*'|'/'|'%') simpleExpression)*
     ;
 
 additiveExpression
