@@ -42,7 +42,7 @@ externalDeclaration
     ;
 
 functionDefinition
-    :   declarationSpecifiers? declarator declarationList? compoundStatement
+    :   declarationSpecifiers declarator declarationList? compoundStatement
     ;
 
 declarationList
@@ -78,7 +78,6 @@ unaryExpression
     (postfixExpression
     |   unaryOperator simpleExpression
     |   ('sizeof') '(' typeName ')'
-    |   '&&' Identifier // GCC extension address of label
     )
     ;
 
@@ -116,7 +115,6 @@ expression
       expression
     ;
 */
-
 
 simpleExpression
     :   unaryExpression
@@ -187,7 +185,6 @@ constantExpression
 
 declaration
     :   declarationSpecifiers initDeclaratorList? ';'
-    |   staticAssertDeclaration
     ;
 
 declarationSpecifiers
@@ -202,8 +199,6 @@ declarationSpecifier
     :   storageClassSpecifier
     |   typeSpecifier
     |   typeQualifier
-    |   functionSpecifier
-    |   alignmentSpecifier
     ;
 
 initDeclaratorList
@@ -216,35 +211,29 @@ initDeclarator
 
 storageClassSpecifier
     :   'typedef'
-    |   'extern'
     |   'static'
-    |   '_Thread_local'
-    |   'auto'
-    |   'register'
+    ;
+
+primitiveType
+    :   'void'
+    |   'byte'
+    |   'int16'
+    |   'int32'
+    |   'int64'
+    |   'int128'
+    |   'float32'
+    |   'float64'
+    |   'float128'
+    |   'bool'
     ;
 
 typeSpecifier
-    :   ('void'
-    |   'char'
-    |   'short'
-    |   'int'
-    |   'long'
-    |   'float'
-    |   'double'
-    |   'signed'
-    |   'unsigned'
-    |   '_Bool'
-    |   '_Complex'
-    |   '__m128'
-    |   '__m128d'
-    |   '__m128i')
-    |   '__extension__' '(' ('__m128' | '__m128d' | '__m128i') ')'
-    |   atomicTypeSpecifier
+    :   primitiveType
     |   structOrUnionSpecifier
     |   enumSpecifier
     |   typedefName
-    |   '__typeof__' '(' constantExpression ')' // GCC extension
-    |   typeSpecifier pointer
+    |   'array_c' '<' primitiveType ',' Constant '>'
+    |   'string_buffer_c<' Constant '>'
     ;
 
 structOrUnionSpecifier
@@ -263,7 +252,6 @@ structDeclarationList
 
 structDeclaration
     :   specifierQualifierList structDeclaratorList? ';'
-    |   staticAssertDeclaration
     ;
 
 specifierQualifierList
@@ -296,32 +284,12 @@ enumerationConstant
     :   Identifier
     ;
 
-atomicTypeSpecifier
-    :   '_Atomic' '(' typeName ')'
-    ;
-
 typeQualifier
     :   'const'
-    |   'restrict'
-    |   'volatile'
-    |   '_Atomic'
-    ;
-
-functionSpecifier
-    :   ('inline'
-    |   '_Noreturn'
-    |   '__inline__' // GCC extension
-    |   '__stdcall')
-    |   gccAttributeSpecifier
-    |   '__declspec' '(' Identifier ')'
-    ;
-
-alignmentSpecifier
-    :   '_Alignas' '(' (typeName | constantExpression) ')'
     ;
 
 declarator
-    :   pointer? directDeclarator gccDeclaratorExtension*
+    :   directDeclarator
     ;
 
 directDeclarator
@@ -334,35 +302,12 @@ directDeclarator
     |   directDeclarator '(' parameterTypeList ')'
     |   directDeclarator '(' identifierList? ')'
     |   Identifier ':' DigitSequence  // bit field
-    |   '(' typeSpecifier? pointer directDeclarator ')' // function pointer like: (__cdecl *f)
-    ;
-
-gccDeclaratorExtension
-    :   '__asm' '(' StringLiteral+ ')'
-    |   gccAttributeSpecifier
-    ;
-
-gccAttributeSpecifier
-    :   '__attribute__' '(' '(' gccAttributeList ')' ')'
-    ;
-
-gccAttributeList
-    :   gccAttribute? (',' gccAttribute?)*
-    ;
-
-gccAttribute
-    :   ~(',' | '(' | ')') // relaxed def for "identifier or reserved word"
-        ('(' argumentExpressionList? ')')?
     ;
 
 nestedParenthesesBlock
     :   (   ~('(' | ')')
         |   '(' nestedParenthesesBlock ')'
         )*
-    ;
-
-pointer
-    :  (('*'|'^') typeQualifierList?)+ // ^ - Blocks language extension
     ;
 
 typeQualifierList
@@ -391,22 +336,21 @@ typeName
     ;
 
 abstractDeclarator
-    :   pointer
-    |   pointer? directAbstractDeclarator gccDeclaratorExtension*
+    :   directAbstractDeclarator
     ;
 
 directAbstractDeclarator
-    :   '(' abstractDeclarator ')' gccDeclaratorExtension*
+    :   '(' abstractDeclarator ')'
     |   '[' typeQualifierList? assignmentExpression? ']'
     |   '[' 'static' typeQualifierList? assignmentExpression ']'
     |   '[' typeQualifierList 'static' assignmentExpression ']'
     |   '[' '*' ']'
-    |   '(' parameterTypeList? ')' gccDeclaratorExtension*
+    |   '(' parameterTypeList? ')'
     |   directAbstractDeclarator '[' typeQualifierList? assignmentExpression? ']'
     |   directAbstractDeclarator '[' 'static' typeQualifierList? assignmentExpression ']'
     |   directAbstractDeclarator '[' typeQualifierList 'static' assignmentExpression ']'
     |   directAbstractDeclarator '[' '*' ']'
-    |   directAbstractDeclarator '(' parameterTypeList? ')' gccDeclaratorExtension*
+    |   directAbstractDeclarator '(' parameterTypeList? ')'
     ;
 
 typedefName
@@ -435,10 +379,6 @@ designator
     |   '.' Identifier
     ;
 
-staticAssertDeclaration
-    :   '_Static_assert' '(' constantExpression ',' StringLiteral+ ')' ';'
-    ;
-
 statement
     :   labeledStatement
     |   compoundStatement
@@ -446,7 +386,6 @@ statement
     |   selectionStatement
     |   iterationStatement
     |   jumpStatement
-    |   ('__asm' | '__asm__') ('volatile' | '__volatile__') '(' (logicalOrExpression (',' logicalOrExpression)*)? (':' (logicalOrExpression (',' logicalOrExpression)*)?)* ')' ';'
     ;
 
 labeledStatement
@@ -499,12 +438,7 @@ forExpression
     ;
 
 jumpStatement
-    :   ('goto' Identifier
-    |   ('continue'| 'break')
-    |   'return' expression?
-    |   'goto' unaryExpression // GCC extension
-    )
-    ';'
+    :   ('continue' | 'break' | 'return' expression?) ';'
     ;
 
 
