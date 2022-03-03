@@ -125,60 +125,6 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void enterGenericSelection(ArgCParser.GenericSelectionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitGenericSelection(ArgCParser.GenericSelectionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterGenericAssocList(ArgCParser.GenericAssocListContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitGenericAssocList(ArgCParser.GenericAssocListContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterGenericAssociation(ArgCParser.GenericAssociationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitGenericAssociation(ArgCParser.GenericAssociationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
     public void enterPostfixExpression(ArgCParser.PostfixExpressionContext ctx) {
     }
 
@@ -251,7 +197,7 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void enterCastExpression(ArgCParser.CastExpressionContext ctx) {
+    public void enterSimpleExpression(ArgCParser.SimpleExpressionContext ctx) {
     }
 
     /**
@@ -260,7 +206,7 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void exitCastExpression(ArgCParser.CastExpressionContext ctx) {
+    public void exitSimpleExpression(ArgCParser.SimpleExpressionContext ctx) {
     }
 
     /**
@@ -575,24 +521,6 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void enterDeclarationSpecifiers2(ArgCParser.DeclarationSpecifiers2Context ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitDeclarationSpecifiers2(ArgCParser.DeclarationSpecifiers2Context ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
     public void enterDeclarationSpecifier(ArgCParser.DeclarationSpecifierContext ctx) {
     }
 
@@ -657,6 +585,24 @@ public class ArgCBaseListener implements ArgCListener {
      */
     @Override
     public void exitStorageClassSpecifier(ArgCParser.StorageClassSpecifierContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void enterPrimitiveType(ArgCParser.PrimitiveTypeContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void exitPrimitiveType(ArgCParser.PrimitiveTypeContext ctx) {
     }
 
     /**
@@ -881,24 +827,6 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void enterAtomicTypeSpecifier(ArgCParser.AtomicTypeSpecifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitAtomicTypeSpecifier(ArgCParser.AtomicTypeSpecifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
     public void enterTypeQualifier(ArgCParser.TypeQualifierContext ctx) {
     }
 
@@ -909,42 +837,6 @@ public class ArgCBaseListener implements ArgCListener {
      */
     @Override
     public void exitTypeQualifier(ArgCParser.TypeQualifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterFunctionSpecifier(ArgCParser.FunctionSpecifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitFunctionSpecifier(ArgCParser.FunctionSpecifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterAlignmentSpecifier(ArgCParser.AlignmentSpecifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitAlignmentSpecifier(ArgCParser.AlignmentSpecifierContext ctx) {
     }
 
     /**
@@ -989,78 +881,6 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void enterGccDeclaratorExtension(ArgCParser.GccDeclaratorExtensionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitGccDeclaratorExtension(ArgCParser.GccDeclaratorExtensionContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterGccAttributeSpecifier(ArgCParser.GccAttributeSpecifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitGccAttributeSpecifier(ArgCParser.GccAttributeSpecifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterGccAttributeList(ArgCParser.GccAttributeListContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitGccAttributeList(ArgCParser.GccAttributeListContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterGccAttribute(ArgCParser.GccAttributeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitGccAttribute(ArgCParser.GccAttributeContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
     public void enterNestedParenthesesBlock(ArgCParser.NestedParenthesesBlockContext ctx) {
     }
 
@@ -1071,24 +891,6 @@ public class ArgCBaseListener implements ArgCListener {
      */
     @Override
     public void exitNestedParenthesesBlock(ArgCParser.NestedParenthesesBlockContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterPointer(ArgCParser.PointerContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitPointer(ArgCParser.PointerContext ctx) {
     }
 
     /**
@@ -1205,42 +1007,6 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void enterAbstractDeclarator(ArgCParser.AbstractDeclaratorContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitAbstractDeclarator(ArgCParser.AbstractDeclaratorContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterDirectAbstractDeclarator(ArgCParser.DirectAbstractDeclaratorContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitDirectAbstractDeclarator(ArgCParser.DirectAbstractDeclaratorContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
     public void enterTypedefName(ArgCParser.TypedefNameContext ctx) {
     }
 
@@ -1341,24 +1107,6 @@ public class ArgCBaseListener implements ArgCListener {
      */
     @Override
     public void exitDesignator(ArgCParser.DesignatorContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterStaticAssertDeclaration(ArgCParser.StaticAssertDeclarationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitStaticAssertDeclaration(ArgCParser.StaticAssertDeclarationContext ctx) {
     }
 
     /**

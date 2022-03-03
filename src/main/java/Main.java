@@ -1,20 +1,35 @@
 import org.argennon.argcc.Transcoder;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+
 
 public class Main {
+    static final String CMD_FORMAT = "g++ -Werror -std=c++2a %s -fPIC -shared -o %s %s";
+
     public static void main(String[] args) throws IOException {
-        String workingFolderName = "files";
-        if (args.length > 0) workingFolderName = args[0];
+        String includePath = args[0];
+        String srcFileName = args[1];
+        String libFileName = args[2];
 
         var reporter = new StringBasedReporter();
-        Transcoder tc = new Transcoder(reporter);
-        File workingFolder = new File(workingFolderName);
-        File[] files = workingFolder.listFiles();
-        if (files != null) {
-            tc.compileFiles(files);
+        Transcoder transcoder = new Transcoder(reporter);
+        File src = new File(srcFileName);
+        System.out.println(src.getName());
+        File cppFile = new File(src.getPath() + ".cpp");
+        // cppFile.deleteOnExit();
+        if (transcoder.transcodeFile(src, cppFile)) {
+            System.err.println(reporter.getErrorMessages());
+            String cmd = CMD_FORMAT.formatted(includePath, libFileName, cppFile);
+            System.out.println(cmd);
+            var process = Runtime.getRuntime().exec(cmd);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                System.err.println(line);
+            }
         }
-        System.err.println(reporter.getErrorMessages());
     }
 }

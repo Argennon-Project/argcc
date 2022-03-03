@@ -42,7 +42,7 @@ externalDeclaration
     ;
 
 functionDefinition
-    :   declarationSpecifiers declarator declarationList? compoundStatement
+    :   primitiveType? declarator declarationList? compoundStatement
     ;
 
 declarationList
@@ -59,7 +59,7 @@ primaryExpression
 postfixExpression
     :
     (   primaryExpression
-    |   '(' typeName ')' '{' initializerList ','? '}'
+    |   '{' initializerList ','? '}'
     )
     ('[' expression ']'
     | '(' argumentExpressionList? ')'
@@ -191,10 +191,6 @@ declarationSpecifiers
     :   declarationSpecifier+
     ;
 
-declarationSpecifiers2
-    :   declarationSpecifier+
-    ;
-
 declarationSpecifier
     :   storageClassSpecifier
     |   typeSpecifier
@@ -295,10 +291,6 @@ declarator
 directDeclarator
     :   Identifier
     |   '(' declarator ')'
-    |   directDeclarator '[' typeQualifierList? assignmentExpression? ']'
-    |   directDeclarator '[' 'static' typeQualifierList? assignmentExpression ']'
-    |   directDeclarator '[' typeQualifierList 'static' assignmentExpression ']'
-    |   directDeclarator '[' typeQualifierList? '*' ']'
     |   directDeclarator '(' parameterTypeList ')'
     |   directDeclarator '(' identifierList? ')'
     |   Identifier ':' DigitSequence  // bit field
@@ -323,8 +315,7 @@ parameterList
     ;
 
 parameterDeclaration
-    :   declarationSpecifiers declarator
-    |   declarationSpecifiers2 abstractDeclarator?
+    :   declarationSpecifiers '&'? declarator
     ;
 
 identifierList
@@ -332,25 +323,7 @@ identifierList
     ;
 
 typeName
-    :   specifierQualifierList abstractDeclarator?
-    ;
-
-abstractDeclarator
-    :   directAbstractDeclarator
-    ;
-
-directAbstractDeclarator
-    :   '(' abstractDeclarator ')'
-    |   '[' typeQualifierList? assignmentExpression? ']'
-    |   '[' 'static' typeQualifierList? assignmentExpression ']'
-    |   '[' typeQualifierList 'static' assignmentExpression ']'
-    |   '[' '*' ']'
-    |   '(' parameterTypeList? ')'
-    |   directAbstractDeclarator '[' typeQualifierList? assignmentExpression? ']'
-    |   directAbstractDeclarator '[' 'static' typeQualifierList? assignmentExpression ']'
-    |   directAbstractDeclarator '[' typeQualifierList 'static' assignmentExpression ']'
-    |   directAbstractDeclarator '[' '*' ']'
-    |   directAbstractDeclarator '(' parameterTypeList? ')'
+    :   specifierQualifierList
     ;
 
 typedefName

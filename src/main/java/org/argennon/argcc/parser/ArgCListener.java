@@ -1,6 +1,5 @@
 // Generated from /home/aybehrouz/IdeaProjects/argcc/src/main/java/org/argennon/argcc/grammar/ArgC.g4 by ANTLR 4.9.2
 package org.argennon.argcc.parser;
-
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -93,48 +92,6 @@ public interface ArgCListener extends ParseTreeListener {
     void exitPrimaryExpression(ArgCParser.PrimaryExpressionContext ctx);
 
     /**
-     * Enter a parse tree produced by {@link ArgCParser#genericSelection}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterGenericSelection(ArgCParser.GenericSelectionContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#genericSelection}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitGenericSelection(ArgCParser.GenericSelectionContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link ArgCParser#genericAssocList}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterGenericAssocList(ArgCParser.GenericAssocListContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#genericAssocList}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitGenericAssocList(ArgCParser.GenericAssocListContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link ArgCParser#genericAssociation}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterGenericAssociation(ArgCParser.GenericAssociationContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#genericAssociation}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitGenericAssociation(ArgCParser.GenericAssociationContext ctx);
-
-    /**
      * Enter a parse tree produced by {@link ArgCParser#postfixExpression}.
      *
      * @param ctx the parse tree
@@ -191,18 +148,18 @@ public interface ArgCListener extends ParseTreeListener {
     void exitUnaryOperator(ArgCParser.UnaryOperatorContext ctx);
 
     /**
-     * Enter a parse tree produced by {@link ArgCParser#castExpression}.
+     * Enter a parse tree produced by {@link ArgCParser#simpleExpression}.
      *
      * @param ctx the parse tree
      */
-    void enterCastExpression(ArgCParser.CastExpressionContext ctx);
+    void enterSimpleExpression(ArgCParser.SimpleExpressionContext ctx);
 
     /**
-     * Exit a parse tree produced by {@link ArgCParser#castExpression}.
+     * Exit a parse tree produced by {@link ArgCParser#simpleExpression}.
      *
      * @param ctx the parse tree
      */
-    void exitCastExpression(ArgCParser.CastExpressionContext ctx);
+    void exitSimpleExpression(ArgCParser.SimpleExpressionContext ctx);
 
     /**
      * Enter a parse tree produced by {@link ArgCParser#multiplicativeExpression}.
@@ -443,20 +400,6 @@ public interface ArgCListener extends ParseTreeListener {
     void exitDeclarationSpecifiers(ArgCParser.DeclarationSpecifiersContext ctx);
 
     /**
-     * Enter a parse tree produced by {@link ArgCParser#declarationSpecifiers2}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterDeclarationSpecifiers2(ArgCParser.DeclarationSpecifiers2Context ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#declarationSpecifiers2}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitDeclarationSpecifiers2(ArgCParser.DeclarationSpecifiers2Context ctx);
-
-    /**
      * Enter a parse tree produced by {@link ArgCParser#declarationSpecifier}.
      *
      * @param ctx the parse tree
@@ -511,6 +454,20 @@ public interface ArgCListener extends ParseTreeListener {
      * @param ctx the parse tree
      */
     void exitStorageClassSpecifier(ArgCParser.StorageClassSpecifierContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link ArgCParser#primitiveType}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterPrimitiveType(ArgCParser.PrimitiveTypeContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgCParser#primitiveType}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitPrimitiveType(ArgCParser.PrimitiveTypeContext ctx);
 
     /**
      * Enter a parse tree produced by {@link ArgCParser#typeSpecifier}.
@@ -681,20 +638,6 @@ public interface ArgCListener extends ParseTreeListener {
     void exitEnumerationConstant(ArgCParser.EnumerationConstantContext ctx);
 
     /**
-     * Enter a parse tree produced by {@link ArgCParser#atomicTypeSpecifier}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterAtomicTypeSpecifier(ArgCParser.AtomicTypeSpecifierContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#atomicTypeSpecifier}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitAtomicTypeSpecifier(ArgCParser.AtomicTypeSpecifierContext ctx);
-
-    /**
      * Enter a parse tree produced by {@link ArgCParser#typeQualifier}.
      *
      * @param ctx the parse tree
@@ -707,34 +650,6 @@ public interface ArgCListener extends ParseTreeListener {
      * @param ctx the parse tree
      */
     void exitTypeQualifier(ArgCParser.TypeQualifierContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link ArgCParser#functionSpecifier}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterFunctionSpecifier(ArgCParser.FunctionSpecifierContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#functionSpecifier}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitFunctionSpecifier(ArgCParser.FunctionSpecifierContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link ArgCParser#alignmentSpecifier}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterAlignmentSpecifier(ArgCParser.AlignmentSpecifierContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#alignmentSpecifier}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitAlignmentSpecifier(ArgCParser.AlignmentSpecifierContext ctx);
 
     /**
      * Enter a parse tree produced by {@link ArgCParser#declarator}.
@@ -765,62 +680,6 @@ public interface ArgCListener extends ParseTreeListener {
     void exitDirectDeclarator(ArgCParser.DirectDeclaratorContext ctx);
 
     /**
-     * Enter a parse tree produced by {@link ArgCParser#gccDeclaratorExtension}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterGccDeclaratorExtension(ArgCParser.GccDeclaratorExtensionContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#gccDeclaratorExtension}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitGccDeclaratorExtension(ArgCParser.GccDeclaratorExtensionContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link ArgCParser#gccAttributeSpecifier}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterGccAttributeSpecifier(ArgCParser.GccAttributeSpecifierContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#gccAttributeSpecifier}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitGccAttributeSpecifier(ArgCParser.GccAttributeSpecifierContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link ArgCParser#gccAttributeList}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterGccAttributeList(ArgCParser.GccAttributeListContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#gccAttributeList}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitGccAttributeList(ArgCParser.GccAttributeListContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link ArgCParser#gccAttribute}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterGccAttribute(ArgCParser.GccAttributeContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#gccAttribute}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitGccAttribute(ArgCParser.GccAttributeContext ctx);
-
-    /**
      * Enter a parse tree produced by {@link ArgCParser#nestedParenthesesBlock}.
      *
      * @param ctx the parse tree
@@ -833,20 +692,6 @@ public interface ArgCListener extends ParseTreeListener {
      * @param ctx the parse tree
      */
     void exitNestedParenthesesBlock(ArgCParser.NestedParenthesesBlockContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link ArgCParser#pointer}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterPointer(ArgCParser.PointerContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#pointer}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitPointer(ArgCParser.PointerContext ctx);
 
     /**
      * Enter a parse tree produced by {@link ArgCParser#typeQualifierList}.
@@ -933,34 +778,6 @@ public interface ArgCListener extends ParseTreeListener {
     void exitTypeName(ArgCParser.TypeNameContext ctx);
 
     /**
-     * Enter a parse tree produced by {@link ArgCParser#abstractDeclarator}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterAbstractDeclarator(ArgCParser.AbstractDeclaratorContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#abstractDeclarator}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitAbstractDeclarator(ArgCParser.AbstractDeclaratorContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link ArgCParser#directAbstractDeclarator}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterDirectAbstractDeclarator(ArgCParser.DirectAbstractDeclaratorContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#directAbstractDeclarator}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitDirectAbstractDeclarator(ArgCParser.DirectAbstractDeclaratorContext ctx);
-
-    /**
      * Enter a parse tree produced by {@link ArgCParser#typedefName}.
      *
      * @param ctx the parse tree
@@ -1043,20 +860,6 @@ public interface ArgCListener extends ParseTreeListener {
      * @param ctx the parse tree
      */
     void exitDesignator(ArgCParser.DesignatorContext ctx);
-
-    /**
-     * Enter a parse tree produced by {@link ArgCParser#staticAssertDeclaration}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterStaticAssertDeclaration(ArgCParser.StaticAssertDeclarationContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#staticAssertDeclaration}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitStaticAssertDeclaration(ArgCParser.StaticAssertDeclarationContext ctx);
 
     /**
      * Enter a parse tree produced by {@link ArgCParser#statement}.
