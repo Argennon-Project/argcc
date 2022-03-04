@@ -120,7 +120,7 @@ typedef int (* dispatcher_ptr)(response_buffer_c& response, string_view_c reques
 #define STRING(name, str) char __##name##_buf__[] = str; string_view_c name(__##name##_buf__)
 #define STRING_BUFFER(name, size) string_buffer_c<size> name
 #define DEF_ARGC_DISPATCHER extern "C" int dispatcher(response_buffer_c& response, string_view_c request)
-#define ARGC_DISPATCHER() extern "C" int dispatcher(response_buffer_c& response, string_view_c request)
+#define dispatcher extern "C" int dispatcher(response_buffer_c& response, string_view_c request)
 
 /// HTTP status codes. new costume coded could be defined.
 #define HTTP_OK 200

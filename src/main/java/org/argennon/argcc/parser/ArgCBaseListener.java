@@ -503,24 +503,6 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void enterDeclarationSpecifiers(ArgCParser.DeclarationSpecifiersContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitDeclarationSpecifiers(ArgCParser.DeclarationSpecifiersContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
     public void enterDeclarationSpecifier(ArgCParser.DeclarationSpecifierContext ctx) {
     }
 
@@ -575,24 +557,6 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void enterStorageClassSpecifier(ArgCParser.StorageClassSpecifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitStorageClassSpecifier(ArgCParser.StorageClassSpecifierContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
     public void enterPrimitiveType(ArgCParser.PrimitiveTypeContext ctx) {
     }
 
@@ -603,6 +567,24 @@ public class ArgCBaseListener implements ArgCListener {
      */
     @Override
     public void exitPrimitiveType(ArgCParser.PrimitiveTypeContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void enterClassType(ArgCParser.ClassTypeContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void exitClassType(ArgCParser.ClassTypeContext ctx) {
     }
 
     /**
@@ -899,24 +881,6 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void enterTypeQualifierList(ArgCParser.TypeQualifierListContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitTypeQualifierList(ArgCParser.TypeQualifierListContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
     public void enterParameterTypeList(ArgCParser.ParameterTypeListContext ctx) {
     }
 
@@ -999,24 +963,6 @@ public class ArgCBaseListener implements ArgCListener {
      */
     @Override
     public void exitTypeName(ArgCParser.TypeNameContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void enterTypedefName(ArgCParser.TypedefNameContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitTypedefName(ArgCParser.TypedefNameContext ctx) {
     }
 
     /**

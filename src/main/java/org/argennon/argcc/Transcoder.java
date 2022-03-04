@@ -32,6 +32,8 @@ public class Transcoder {
             // begin parsing at initial rule and store the generated parse tree.
             var root = parser.compilationUnit();
 
+            System.out.println(root.getText());
+
             if (parser.getNumberOfSyntaxErrors() != 0) return false;
 
             writer.println("#include \"argc/types.h\"");

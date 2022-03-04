@@ -1,12 +1,6 @@
-#include "argc/types.h"
-#include "argc/functions.h"
 
-using namespace argennon;
-using namespace ascee;
-using namespace argc;
-
-const static long_id balance_chunk = 0;
-const static int32 size_of_balance = 8;
+static const long_id balance_chunk = 0;
+static const int32 size_of_balance = 8;
 
 /*
 bool create_app_account(long_id address, long_id owner_id) {
@@ -19,9 +13,6 @@ bool create_app_account(long_id address, long_id owner_id) {
     return true;
 }
 */
-
-// bool f() {}
-
 bool create_normal_account(long_id address, publickey_c& pk, signature_c& proof) {
     if (!validate_pk(pk, proof)) return false;
     load_account_chunk(address, 0);
@@ -66,7 +57,7 @@ void transfer(long_id from, long_id to, int64 amount, signature_c& sig) {
     add_int64_to(recipient_offset, amount);
 }
 
-ARGC_DISPATCHER() {
+dispatcher {
     int32 position = 0;
     string_view_c method = p_scan_str(request, "", " ", position);
     if (method == "PATCH") {
