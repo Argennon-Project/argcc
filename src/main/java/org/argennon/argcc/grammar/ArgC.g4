@@ -37,17 +37,45 @@ translationUnit
 
 externalDeclaration
     :   functionDefinition
-    |   declaration
+    |   functionDeclaration
+    |   structDeclaration
+    |   initializedDeclaration
     |   ';' // stray ;
     ;
 
+functionDeclaration
+    :   primitiveType directDeclarator '(' parameterList? ')' ';'
+    ;
+
 functionDefinition
-    :   primitiveType declarator declarationList? compoundStatement
+    :   primitiveType directDeclarator '(' parameterList? ')' compoundStatement
     |   Dispatcher compoundStatement
     ;
 
-declarationList
-    :   declaration+
+structDeclaration
+    :   structOrUnion Identifier? '{' structDeclarationList '}' ';'
+    |   'enum' Identifier? '{' enumeratorList ','? '}' ';'
+    ;
+
+initializedDeclaration
+    :   declarationSpecifier initDeclaratorList ';'
+    ;
+
+initDeclaratorList
+    :   initDeclarator (',' initDeclarator)*
+    ;
+
+initDeclarator
+    :   directDeclarator '=' initializer
+    ;
+
+directDeclarator
+    :   Identifier
+    |   Identifier ':' DigitSequence  // bit field
+    ;
+
+declarationSpecifier
+    :   typeQualifier* typeSpecifier
     ;
 
 primaryExpression
@@ -85,37 +113,6 @@ unaryExpression
 unaryOperator
     :   '+' | '-' | '~' | '!'
     ;
-/*
-expression
-    : primary
-    | expression bop='.'
-      (
-         identifier
-       | methodCall
-       | explicitGenericInvocation
-      )
-    | expression '[' expression ']'
-    | methodCall
-    | '(' annotation* typeType ('&' typeType)* ')' expression
-    | expression postfix=('++' | '--')
-    | prefix=('+'|'-'|'++'|'--') expression
-    | prefix=('~'|'!') expression
-    | expression bop=('*'|'/'|'%') expression
-    | expression bop=('+'|'-') expression
-    | expression ('<' '<' | '>' '>' '>' | '>' '>') expression
-    | expression bop=('<=' | '>=' | '>' | '<') expression
-    | expression bop=('==' | '!=') expression
-    | expression bop='&' expression
-    | expression bop='^' expression
-    | expression bop='|' expression
-    | expression bop='&&' expression
-    | expression bop='||' expression
-    | <assoc=right> expression bop='?' expression ':' expression
-    | <assoc=right> expression
-      bop=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=')
-      expression
-    ;
-*/
 
 simpleExpression
     :   unaryExpression
@@ -184,22 +181,6 @@ constantExpression
     :   conditionalExpression
     ;
 
-declaration
-    :   declarationSpecifier initDeclaratorList? ';'
-    ;
-
-declarationSpecifier
-    :   typeQualifier* typeSpecifier
-    ;
-
-initDeclaratorList
-    :   initDeclarator (',' initDeclarator)*
-    ;
-
-initDeclarator
-    :   declarator ('=' initializer)?
-    ;
-
 primitiveType
     :   Void
     |   Byte
@@ -231,8 +212,7 @@ typeSpecifier
     ;
 
 structOrUnionSpecifier
-    :   structOrUnion Identifier? '{' structDeclarationList '}'
-    |   structOrUnion Identifier
+    :   structOrUnion Identifier
     ;
 
 structOrUnion
@@ -241,29 +221,16 @@ structOrUnion
     ;
 
 structDeclarationList
-    :   structDeclaration+
+    :   initializedDeclaration+
     ;
 
-structDeclaration
-    :   specifierQualifierList structDeclaratorList? ';'
-    ;
 
 specifierQualifierList
     :   (typeSpecifier| typeQualifier) specifierQualifierList?
     ;
 
-structDeclaratorList
-    :   structDeclarator (',' structDeclarator)*
-    ;
-
-structDeclarator
-    :   declarator
-    |   declarator? ':' constantExpression
-    ;
-
 enumSpecifier
-    :   'enum' Identifier? '{' enumeratorList ','? '}'
-    |   'enum' Identifier
+    :   'enum' Identifier
     ;
 
 enumeratorList
@@ -283,26 +250,10 @@ typeQualifier
     |   'static'
     ;
 
-declarator
-    :   directDeclarator
-    ;
-
-directDeclarator
-    :   Identifier
-    |   '(' declarator ')'
-    |   directDeclarator '(' parameterTypeList ')'
-    |   directDeclarator '(' identifierList? ')'
-    |   Identifier ':' DigitSequence  // bit field
-    ;
-
 nestedParenthesesBlock
     :   (   ~('(' | ')')
         |   '(' nestedParenthesesBlock ')'
         )*
-    ;
-
-parameterTypeList
-    :   parameterList (',' '...')?
     ;
 
 parameterList
@@ -310,11 +261,7 @@ parameterList
     ;
 
 parameterDeclaration
-    :   declarationSpecifier '&'? declarator
-    ;
-
-identifierList
-    :   Identifier (',' Identifier)*
+    :   declarationSpecifier '&'? directDeclarator?
     ;
 
 typeName
@@ -323,7 +270,7 @@ typeName
 
 initializer
     :   assignmentExpression
-    |   '{' initializerList ','? '}'
+    |   '{' initializerList? ','? '}'
     ;
 
 initializerList
@@ -353,8 +300,7 @@ statement
     ;
 
 labeledStatement
-    :   Identifier ':' statement
-    |   'case' constantExpression ':' statement
+    :   'case' constantExpression ':' statement
     |   'default' ':' statement
     ;
 
@@ -368,7 +314,7 @@ blockItemList
 
 blockItem
     :   statement
-    |   declaration
+    |   initializedDeclaration
     ;
 
 expressionStatement

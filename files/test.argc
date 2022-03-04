@@ -13,6 +13,9 @@ bool create_app_account(long_id address, long_id owner_id) {
     return true;
 }
 */
+
+// int32 f() {}
+
 bool create_normal_account(long_id address, publickey_c& pk, signature_c& proof) {
     if (!validate_pk(pk, proof)) return false;
     load_account_chunk(address, 0);
@@ -29,7 +32,7 @@ void transfer(long_id from, long_id to, int64 amount, signature_c& sig) {
 
     int32 sender_balance_offset = -1;
 
-    message_c msg;
+    message_c msg = {};
     append_str(msg, "{\"to\":");
     append_long_id(msg, to);
     append_str(msg, ",\"amount\":");
@@ -47,7 +50,7 @@ void transfer(long_id from, long_id to, int64 amount, signature_c& sig) {
     store_int64(sender_balance_offset, balance);
     if (balance == 0) resize_chunk(sender_balance_offset);
 
-    message_c empty;
+    message_c empty = {};
     int32 recipient_offset = -1;
     if (!verify_by_acc_once(to, empty, sig, recipient_offset)) revert("invalid recipient account");
 
