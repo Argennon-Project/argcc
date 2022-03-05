@@ -21,11 +21,11 @@ public class Main {
         File cppFile = new File(src.getPath() + ".cpp");
         // cppFile.deleteOnExit();
         if (transcoder.transcodeFile(src, cppFile)) {
-            String cmd = CMD_FORMAT.formatted(includePath, libFileName, cppFile);
+            String cmd = String.format(CMD_FORMAT, includePath, libFileName, cppFile);
             System.out.println(cmd);
             var process = Runtime.getRuntime().exec(cmd);
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-            String line = "";
+            String line;
             while ((line = reader.readLine()) != null) {
                 System.err.println(line);
             }
