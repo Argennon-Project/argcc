@@ -32,7 +32,7 @@ compilationUnit
     ;
 
 translationUnit
-    :   externalDeclaration+
+    :   externalDeclaration* Dispatcher compoundStatement
     ;
 
 externalDeclaration
@@ -44,7 +44,6 @@ externalDeclaration
 
 functionDefinition
     :   primitiveType directDeclarator '(' parameterList? ')' compoundStatement
-    |   Dispatcher compoundStatement
     ;
 
 structDeclaration
@@ -75,9 +74,14 @@ declarationSpecifier
 
 primaryExpression
     :   Identifier
+    |   functionCall
     |   Constant
     |   StringLiteral+
     |   '(' expression ')'
+    ;
+
+functionCall
+    :   Identifier '(' argumentExpressionList? ')'
     ;
 
 postfixExpression
@@ -86,7 +90,7 @@ postfixExpression
     |   '{' initializerList ','? '}'
     )
     ('[' expression ']'
-    | '(' argumentExpressionList? ')'
+//  | '(' argumentExpressionList? ')'   function pointer
     | ('.' | '->') Identifier
     | ('++' | '--')
     )*
@@ -367,8 +371,6 @@ LongID : 'long_id';
 Dispatcher : 'dispatcher';
 
 Throw : 'throw';
-Printf : 'printf';
-Scanf : 'scanf';
 Auto : 'auto';
 Break : 'break';
 Case : 'case';
@@ -699,14 +701,14 @@ SChar
 
 Whitespace
     :   [ \t]+
-        -> skip
+        -> channel(HIDDEN)
     ;
 
 Newline
     :   (   '\r' '\n'?
         |   '\n'
         )
-        -> skip
+        -> channel(HIDDEN)
     ;
 
 BlockComment

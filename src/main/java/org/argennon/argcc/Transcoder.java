@@ -2,6 +2,8 @@ package org.argennon.argcc;
 
 
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import org.argennon.argcc.parser.ArgCBaseListener;
 import org.argennon.argcc.parser.ArgCLexer;
 import org.argennon.argcc.parser.ArgCParser;
 
@@ -31,12 +33,19 @@ public class Transcoder {
             parser.addErrorListener(new ErrorTerminator());
 
             // begin parsing at initial rule and store the generated parse tree.
-            parser.compilationUnit();
+            var tree = parser.compilationUnit();
+
+            ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
+            var inserter = new InsertNameSpaceListener(tokens);
+            walker.walk(inserter, tree); // initiate walk of tree with listener
 
             writer.println("#include \"argc/types.h\"");
             writer.println("#include \"argc/functions.h\"");
-            writer.println("using namespace argennon; using namespace ascee; using namespace argc;");
-            writer.printf("#include \"%s\"", input.getName());
+            writer.println("namespace argennon::ascee::argc {");
+            // print back ALTERED stream
+            writer.println(inserter.rewriter.getText());
+            writer.println("}");
+
             return true;
         } catch (RuntimeException err) {
             System.err.println(err.getMessage() + ".");
@@ -50,5 +59,18 @@ class ErrorTerminator extends BaseErrorListener {
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
                             int charPositionInLine, String msg, RecognitionException e) {
         throw new RuntimeException("syntax or lexical error");
+    }
+}
+
+class InsertNameSpaceListener extends ArgCBaseListener {
+    TokenStreamRewriter rewriter;
+
+    public InsertNameSpaceListener(TokenStream tokens) {
+        rewriter = new TokenStreamRewriter(tokens);
+    }
+
+    @Override
+    public void exitFunctionCall(ArgCParser.FunctionCallContext ctx) {
+        rewriter.insertBefore(ctx.start, "argc::");
     }
 }
