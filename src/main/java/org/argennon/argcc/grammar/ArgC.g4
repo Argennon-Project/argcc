@@ -37,14 +37,9 @@ translationUnit
 
 externalDeclaration
     :   functionDefinition
-    |   functionDeclaration
     |   structDeclaration
     |   initializedDeclaration
     |   ';' // stray ;
-    ;
-
-functionDeclaration
-    :   primitiveType directDeclarator '(' parameterList? ')' ';'
     ;
 
 functionDefinition
@@ -261,7 +256,7 @@ parameterList
     ;
 
 parameterDeclaration
-    :   declarationSpecifier '&'? directDeclarator?
+    :   declarationSpecifier '&'? directDeclarator
     ;
 
 typeName
@@ -371,6 +366,9 @@ LongID : 'long_id';
 
 Dispatcher : 'dispatcher';
 
+Throw : 'throw';
+Printf : 'printf';
+Scanf : 'scanf';
 Auto : 'auto';
 Break : 'break';
 Case : 'case';
@@ -473,10 +471,7 @@ Dot : '.';
 Ellipsis : '...';
 
 Identifier
-    :   IdentifierNondigit
-        (   IdentifierNondigit
-        |   Digit
-        )*
+    :   [a-zA-Z] (IdentifierNondigit | Digit)*
     ;
 
 fragment

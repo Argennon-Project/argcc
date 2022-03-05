@@ -50,20 +50,6 @@ public interface ArgCListener extends ParseTreeListener {
     void exitExternalDeclaration(ArgCParser.ExternalDeclarationContext ctx);
 
     /**
-     * Enter a parse tree produced by {@link ArgCParser#functionDeclaration}.
-     *
-     * @param ctx the parse tree
-     */
-    void enterFunctionDeclaration(ArgCParser.FunctionDeclarationContext ctx);
-
-    /**
-     * Exit a parse tree produced by {@link ArgCParser#functionDeclaration}.
-     *
-     * @param ctx the parse tree
-     */
-    void exitFunctionDeclaration(ArgCParser.FunctionDeclarationContext ctx);
-
-    /**
      * Enter a parse tree produced by {@link ArgCParser#functionDefinition}.
      *
      * @param ctx the parse tree

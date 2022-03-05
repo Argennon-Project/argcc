@@ -21,7 +21,6 @@ public class Main {
         File cppFile = new File(src.getPath() + ".cpp");
         // cppFile.deleteOnExit();
         if (transcoder.transcodeFile(src, cppFile)) {
-            System.err.println(reporter.getErrorMessages());
             String cmd = CMD_FORMAT.formatted(includePath, libFileName, cppFile);
             System.out.println(cmd);
             var process = Runtime.getRuntime().exec(cmd);

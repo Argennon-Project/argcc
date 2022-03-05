@@ -71,24 +71,6 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void enterFunctionDeclaration(ArgCParser.FunctionDeclarationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
-    public void exitFunctionDeclaration(ArgCParser.FunctionDeclarationContext ctx) {
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * <p>The default implementation does nothing.</p>
-     */
-    @Override
     public void enterFunctionDefinition(ArgCParser.FunctionDefinitionContext ctx) {
     }
 
