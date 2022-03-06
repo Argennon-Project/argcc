@@ -63,6 +63,8 @@ class ErrorTerminator extends BaseErrorListener {
 }
 
 class InsertNameSpaceListener extends ArgCBaseListener {
+    public static final String NAMESPACE = "argc::";
+    public static final String VAR_PREFIX = "argc_0_";
     TokenStreamRewriter rewriter;
 
     public InsertNameSpaceListener(TokenStream tokens) {
@@ -70,7 +72,17 @@ class InsertNameSpaceListener extends ArgCBaseListener {
     }
 
     @Override
-    public void exitFunctionCall(ArgCParser.FunctionCallContext ctx) {
-        rewriter.insertBefore(ctx.start, "argc::");
+    public void enterFunctionCall(ArgCParser.FunctionCallContext ctx) {
+        rewriter.insertBefore(ctx.start, NAMESPACE);
+    }
+
+    @Override
+    public void enterVariableDeclarator(ArgCParser.VariableDeclaratorContext ctx) {
+        rewriter.insertBefore(ctx.start, VAR_PREFIX);
+    }
+
+    @Override
+    public void enterVariableUsage(ArgCParser.VariableUsageContext ctx) {
+        rewriter.insertBefore(ctx.start, VAR_PREFIX);
     }
 }

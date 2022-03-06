@@ -43,7 +43,7 @@ externalDeclaration
     ;
 
 functionDefinition
-    :   primitiveType directDeclarator '(' parameterList? ')' compoundStatement
+    :   primitiveType Identifier '(' parameterList? ')' compoundStatement
     ;
 
 structDeclaration
@@ -60,10 +60,10 @@ initDeclaratorList
     ;
 
 initDeclarator
-    :   directDeclarator '=' initializer
+    :   variableDeclarator '=' initializer
     ;
 
-directDeclarator
+variableDeclarator
     :   Identifier
     |   Identifier ':' DigitSequence  // bit field
     ;
@@ -73,11 +73,15 @@ declarationSpecifier
     ;
 
 primaryExpression
-    :   Identifier
+    :   variableUsage
     |   functionCall
     |   Constant
     |   StringLiteral+
     |   '(' expression ')'
+    ;
+
+variableUsage
+    : Identifier
     ;
 
 functionCall
@@ -91,7 +95,7 @@ postfixExpression
     )
     ('[' expression ']'
 //  | '(' argumentExpressionList? ')'   function pointer
-    | ('.' | '->') Identifier
+    | ('.' | '->') variableUsage
     | ('++' | '--')
     )*
     ;
@@ -260,7 +264,7 @@ parameterList
     ;
 
 parameterDeclaration
-    :   declarationSpecifier '&'? directDeclarator
+    :   declarationSpecifier '&'? variableDeclarator
     ;
 
 typeName
@@ -472,6 +476,15 @@ Arrow : '->';
 Dot : '.';
 Ellipsis : '...';
 
+Constant
+    :   IntegerConstant
+    |   FloatingConstant
+//  |   EnumerationConstant
+    |   CharacterConstant
+    |   LogicalConstant
+    ;
+
+
 Identifier
     :   [a-zA-Z] (IdentifierNondigit | Digit)*
     ;
@@ -504,12 +517,6 @@ HexQuad
     :   HexadecimalDigit HexadecimalDigit HexadecimalDigit HexadecimalDigit
     ;
 
-Constant
-    :   IntegerConstant
-    |   FloatingConstant
-    //|   EnumerationConstant
-    |   CharacterConstant
-    ;
 
 fragment
 IntegerConstant
@@ -537,6 +544,11 @@ OctalConstant
 fragment
 HexadecimalConstant
     :   HexadecimalPrefix HexadecimalDigit+
+    ;
+
+fragment
+LogicalConstant
+    : 'true' | 'false'
     ;
 
 fragment

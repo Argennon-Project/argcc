@@ -161,7 +161,7 @@ public class ArgCBaseListener implements ArgCListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override
-	public void enterDirectDeclarator(ArgCParser.DirectDeclaratorContext ctx) {
+	public void enterVariableDeclarator(ArgCParser.VariableDeclaratorContext ctx) {
 	}
 
 	/**
@@ -170,7 +170,7 @@ public class ArgCBaseListener implements ArgCListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override
-	public void exitDirectDeclarator(ArgCParser.DirectDeclaratorContext ctx) {
+	public void exitVariableDeclarator(ArgCParser.VariableDeclaratorContext ctx) {
 	}
 
 	/**
@@ -207,6 +207,24 @@ public class ArgCBaseListener implements ArgCListener {
 	 */
 	@Override
 	public void exitPrimaryExpression(ArgCParser.PrimaryExpressionContext ctx) {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override
+	public void enterVariableUsage(ArgCParser.VariableUsageContext ctx) {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override
+	public void exitVariableUsage(ArgCParser.VariableUsageContext ctx) {
 	}
 
 	/**
@@ -1186,34 +1204,23 @@ public class ArgCBaseListener implements ArgCListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override
-	public void enterEveryRule(ParserRuleContext ctx) {
-	}
-
+	@Override public void enterEveryRule(ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override
-	public void exitEveryRule(ParserRuleContext ctx) {
-	}
-
+	@Override public void exitEveryRule(ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override
-	public void visitTerminal(TerminalNode node) {
-	}
-
+	@Override public void visitTerminal(TerminalNode node) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override
-	public void visitErrorNode(ErrorNode node) {
-	}
+	@Override public void visitErrorNode(ErrorNode node) { }
 }
