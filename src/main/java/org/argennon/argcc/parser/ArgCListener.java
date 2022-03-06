@@ -84,28 +84,21 @@ public interface ArgCListener extends ParseTreeListener {
 	void enterInitDeclarator(ArgCParser.InitDeclaratorContext ctx);
 	/**
 	 * Exit a parse tree produced by {@link ArgCParser#initDeclarator}.
-	 *
 	 * @param ctx the parse tree
 	 */
 	void exitInitDeclarator(ArgCParser.InitDeclaratorContext ctx);
-
 	/**
 	 * Enter a parse tree produced by {@link ArgCParser#variableDeclarator}.
-	 *
 	 * @param ctx the parse tree
 	 */
 	void enterVariableDeclarator(ArgCParser.VariableDeclaratorContext ctx);
-
 	/**
 	 * Exit a parse tree produced by {@link ArgCParser#variableDeclarator}.
-	 *
 	 * @param ctx the parse tree
 	 */
 	void exitVariableDeclarator(ArgCParser.VariableDeclaratorContext ctx);
-
 	/**
 	 * Enter a parse tree produced by {@link ArgCParser#declarationSpecifier}.
-	 *
 	 * @param ctx the parse tree
 	 */
 	void enterDeclarationSpecifier(ArgCParser.DeclarationSpecifierContext ctx);
@@ -114,42 +107,31 @@ public interface ArgCListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclarationSpecifier(ArgCParser.DeclarationSpecifierContext ctx);
-
 	/**
 	 * Enter a parse tree produced by {@link ArgCParser#primaryExpression}.
-	 *
 	 * @param ctx the parse tree
 	 */
 	void enterPrimaryExpression(ArgCParser.PrimaryExpressionContext ctx);
-
 	/**
 	 * Exit a parse tree produced by {@link ArgCParser#primaryExpression}.
-	 *
 	 * @param ctx the parse tree
 	 */
 	void exitPrimaryExpression(ArgCParser.PrimaryExpressionContext ctx);
-
 	/**
 	 * Enter a parse tree produced by {@link ArgCParser#variableUsage}.
-	 *
 	 * @param ctx the parse tree
 	 */
 	void enterVariableUsage(ArgCParser.VariableUsageContext ctx);
-
 	/**
 	 * Exit a parse tree produced by {@link ArgCParser#variableUsage}.
-	 *
 	 * @param ctx the parse tree
 	 */
 	void exitVariableUsage(ArgCParser.VariableUsageContext ctx);
-
 	/**
 	 * Enter a parse tree produced by {@link ArgCParser#functionCall}.
-	 *
 	 * @param ctx the parse tree
 	 */
 	void enterFunctionCall(ArgCParser.FunctionCallContext ctx);
-
 	/**
 	 * Exit a parse tree produced by {@link ArgCParser#functionCall}.
 	 * @param ctx the parse tree
@@ -425,46 +407,6 @@ public interface ArgCListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSpecifierQualifierList(ArgCParser.SpecifierQualifierListContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ArgCParser#enumSpecifier}.
-	 * @param ctx the parse tree
-	 */
-	void enterEnumSpecifier(ArgCParser.EnumSpecifierContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgCParser#enumSpecifier}.
-	 * @param ctx the parse tree
-	 */
-	void exitEnumSpecifier(ArgCParser.EnumSpecifierContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ArgCParser#enumeratorList}.
-	 * @param ctx the parse tree
-	 */
-	void enterEnumeratorList(ArgCParser.EnumeratorListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgCParser#enumeratorList}.
-	 * @param ctx the parse tree
-	 */
-	void exitEnumeratorList(ArgCParser.EnumeratorListContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ArgCParser#enumerator}.
-	 * @param ctx the parse tree
-	 */
-	void enterEnumerator(ArgCParser.EnumeratorContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgCParser#enumerator}.
-	 * @param ctx the parse tree
-	 */
-	void exitEnumerator(ArgCParser.EnumeratorContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ArgCParser#enumerationConstant}.
-	 * @param ctx the parse tree
-	 */
-	void enterEnumerationConstant(ArgCParser.EnumerationConstantContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgCParser#enumerationConstant}.
-	 * @param ctx the parse tree
-	 */
-	void exitEnumerationConstant(ArgCParser.EnumerationConstantContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ArgCParser#typeQualifier}.
 	 * @param ctx the parse tree

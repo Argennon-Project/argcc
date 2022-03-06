@@ -48,7 +48,6 @@ functionDefinition
 
 structDeclaration
     :   structOrUnion Identifier? '{' structDeclarationList '}' ';'
-    |   'enum' Identifier? '{' enumeratorList ','? '}' ';'
     ;
 
 initializedDeclaration
@@ -209,7 +208,6 @@ typeSpecifier
     :   primitiveType
     |   classType
     |   structOrUnionSpecifier
-    |   enumSpecifier
     |   Array '<' primitiveType ',' Constant '>'
     |   StringBuffer '<' Constant '>'
     ;
@@ -230,22 +228,6 @@ structDeclarationList
 
 specifierQualifierList
     :   (typeSpecifier| typeQualifier) specifierQualifierList?
-    ;
-
-enumSpecifier
-    :   'enum' Identifier
-    ;
-
-enumeratorList
-    :   enumerator (',' enumerator)*
-    ;
-
-enumerator
-    :   enumerationConstant ('=' constantExpression)?
-    ;
-
-enumerationConstant
-    :   Identifier
     ;
 
 typeQualifier
