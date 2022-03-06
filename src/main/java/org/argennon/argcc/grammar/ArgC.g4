@@ -38,7 +38,6 @@ translationUnit
 externalDeclaration
     :   functionDefinition
     |   structDeclaration
-    |   initializedDeclaration
     |   ';' // stray ;
     ;
 
@@ -208,8 +207,8 @@ typeSpecifier
     :   primitiveType
     |   classType
     |   structOrUnionSpecifier
-    |   Array '<' primitiveType ',' Constant '>'
-    |   StringBuffer '<' Constant '>'
+    |   Array '<' primitiveType ',' constantExpression '>'
+    |   StringBuffer '<' constantExpression '>'
     ;
 
 structOrUnionSpecifier

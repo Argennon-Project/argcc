@@ -2,10 +2,6 @@
 #include "argc/functions.h"
 namespace argennon::ascee::argc {
 
-static const long_id argc_0_balance_chunk = 0;
-static const int32 argc_0_size_of_balance = 8;
-
-
 
 
 
@@ -36,7 +32,7 @@ void transfer(long_id argc_0_from, long_id argc_0_to, int64 argc_0_amount, signa
     
     argc::load_account_chunk(argc_0_from, 0);
     
-    if (argc::invalid(argc_0_sender_balance_offset, argc_0_size_of_balance)) argc::revert("zero balance");
+    if (argc::invalid(argc_0_sender_balance_offset, 8)) argc::revert("zero balance");
     int64 argc_0_balance = argc::load_int64(argc_0_sender_balance_offset);
     if (argc_0_balance < argc_0_amount) argc::revert("not enough balance");
     argc_0_balance -= argc_0_amount;
@@ -49,7 +45,7 @@ void transfer(long_id argc_0_from, long_id argc_0_to, int64 argc_0_amount, signa
 
     
     argc::load_account_chunk(argc_0_to, 0);
-    if (argc::invalid(argc_0_recipient_offset, argc_0_size_of_balance)) argc::resize_chunk(argc_0_recipient_offset + argc_0_size_of_balance);
+    if (argc::invalid(argc_0_recipient_offset, 8)) argc::resize_chunk(argc_0_recipient_offset + 8);
     argc::add_int64_to(argc_0_recipient_offset, argc_0_amount);
 }
 
@@ -60,18 +56,18 @@ dispatcher {
         long_id argc_0_account = argc::p_scan_long_id(argc_0_request, "/balances/", "/", argc_0_position);
         long_id argc_0_to = argc::p_scan_long_id(argc_0_request, "{\"to\":", ",", argc_0_position);
         int64 argc_0_amount = argc::p_scan_int64(argc_0_request, "\"amount\":", ",", argc_0_position);
-        signature_c argc_0_sig = argc::p_scan_sig(argc_0_request, "\"sig\":", "\"", argc_0_position);
+        signature_c argc_0_sig = argc::p_scan_sig(argc_0_request, "\"sig\":\"", "\"", argc_0_position);
         argc::transfer(argc_0_account, argc_0_to, argc_0_amount, argc_0_sig);
         argc::append_str(argc_0_response, "success and a good response!");
-        return argc_0_HTTP_OK;
+        return 200;
     } else if (argc_0_method == "PUT") {
         long_id argc_0_address = argc::p_scan_long_id(argc_0_request, "/balances/", "/", argc_0_position);
-        publickey_c argc_0_pk = argc::p_scan_pk(argc_0_request, "{\"pk\":", "\"", argc_0_position);
-        signature_c argc_0_proof = argc::p_scan_sig(argc_0_request, "\"sig\":", "\"", argc_0_position);
+        publickey_c argc_0_pk = argc::p_scan_pk(argc_0_request, "{\"pk\":\"", "\"", argc_0_position);
+        signature_c argc_0_proof = argc::p_scan_sig(argc_0_request, "\"sig\":\"", "\"", argc_0_position);
         if (argc::create_normal_account(argc_0_address, argc_0_pk, argc_0_proof)) {
             return argc_0_HTTP_OK;
         } else {
-            return 300;
+            return argc_0_NOT_ACCEPTED;
         }
     }
     return argc_0_HTTP_OK;

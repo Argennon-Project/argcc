@@ -1,6 +1,4 @@
 
-static const long_id balance_chunk = 0;
-static const int32 size_of_balance = 8;
 
 /*
 bool create_app_account(long_id address, long_id owner_id) {
@@ -13,8 +11,6 @@ bool create_app_account(long_id address, long_id owner_id) {
     return true;
 }
 */
-
-// int32 f() {}
 
 bool create_normal_account(long_id address, publickey_c& pk, signature_c& proof) {
     if (!validate_pk(pk, proof)) return false;
@@ -43,7 +39,7 @@ void transfer(long_id from, long_id to, int64 amount, signature_c& sig) {
     // loading balance chunk
     load_account_chunk(from, 0);
     // checking that the balance exists
-    if (invalid(sender_balance_offset, size_of_balance)) revert("zero balance");
+    if (invalid(sender_balance_offset, 8)) revert("zero balance");
     int64 balance = load_int64(sender_balance_offset);
     if (balance < amount) revert("not enough balance");
     balance -= amount;
@@ -56,7 +52,7 @@ void transfer(long_id from, long_id to, int64 amount, signature_c& sig) {
 
     // loading nonce chunk of the recipient
     load_account_chunk(to, 0);
-    if (invalid(recipient_offset, size_of_balance)) resize_chunk(recipient_offset + size_of_balance);
+    if (invalid(recipient_offset, 8)) resize_chunk(recipient_offset + 8);
     add_int64_to(recipient_offset, amount);
 }
 
@@ -67,18 +63,18 @@ dispatcher {
         long_id account = p_scan_long_id(request, "/balances/", "/", position);
         long_id to = p_scan_long_id(request, "{\"to\":", ",", position);
         int64 amount = p_scan_int64(request, "\"amount\":", ",", position);
-        signature_c sig = p_scan_sig(request, "\"sig\":", "\"", position);
+        signature_c sig = p_scan_sig(request, "\"sig\":\"", "\"", position);
         transfer(account, to, amount, sig);
         append_str(response, "success and a good response!");
-        return HTTP_OK;
+        return 200;
     } else if (method == "PUT") {
         long_id address = p_scan_long_id(request, "/balances/", "/", position);
-        publickey_c pk = p_scan_pk(request, "{\"pk\":", "\"", position);
-        signature_c proof = p_scan_sig(request, "\"sig\":", "\"", position);
+        publickey_c pk = p_scan_pk(request, "{\"pk\":\"", "\"", position);
+        signature_c proof = p_scan_sig(request, "\"sig\":\"", "\"", position);
         if (create_normal_account(address, pk, proof)) {
             return HTTP_OK;
         } else {
-            return 300;
+            return NOT_ACCEPTED;
         }
     }
     return HTTP_OK;
