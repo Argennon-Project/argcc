@@ -13,6 +13,7 @@ bool create_app_account(long_id address, long_id owner_id) {
 */
 
 bool create_normal_account(long_id address, publickey_c& pk, signature_c& proof) {
+    string_view_c str = "789"[450];
     if (!validate_pk(pk, proof)) return false;
     load_account_chunk(address, 0);
     if (!invalid(0, 2)) return false;

@@ -74,8 +74,12 @@ primaryExpression
     :   variableUsage
     |   functionCall
     |   Constant
-    |   StringLiteral+
+    |   stringLiteral
     |   '(' expression ')'
+    ;
+
+stringLiteral
+    :   SimpleStringLiteral+
     ;
 
 variableUsage
@@ -670,7 +674,7 @@ fragment
 HexadecimalEscapeSequence
     :   '\\x' HexadecimalDigit+
     ;
-StringLiteral
+SimpleStringLiteral
     :   EncodingPrefix? '"' SCharSequence? '"'
     ;
 fragment

@@ -230,7 +230,7 @@ Ellipsis
 Constant
 Identifier
 DigitSequence
-StringLiteral
+SimpleStringLiteral
 Whitespace
 Newline
 BlockComment
@@ -384,7 +384,7 @@ EscapeSequence
 SimpleEscapeSequence
 OctalEscapeSequence
 HexadecimalEscapeSequence
-StringLiteral
+SimpleStringLiteral
 EncodingPrefix
 SCharSequence
 SChar

@@ -35,7 +35,8 @@ public class ArgCLexer extends Lexer {
 			ModAssign = 96, PlusAssign = 97, MinusAssign = 98, LeftShiftAssign = 99, RightShiftAssign = 100,
 			AndAssign = 101, XorAssign = 102, OrAssign = 103, Equal = 104, NotEqual = 105, Arrow = 106,
 			Dot = 107, Ellipsis = 108, Constant = 109, Identifier = 110, DigitSequence = 111,
-			StringLiteral = 112, Whitespace = 113, Newline = 114, BlockComment = 115, LineComment = 116;
+			SimpleStringLiteral = 112, Whitespace = 113, Newline = 114, BlockComment = 115,
+			LineComment = 116;
 	public static String[] channelNames = {
 			"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};
@@ -70,8 +71,8 @@ public class ArgCLexer extends Lexer {
 				"FractionalConstant", "ExponentPart", "Sign", "DigitSequence", "HexadecimalFractionalConstant",
 				"BinaryExponentPart", "HexadecimalDigitSequence", "FloatingSuffix", "CharacterConstant",
 				"CCharSequence", "CChar", "EscapeSequence", "SimpleEscapeSequence", "OctalEscapeSequence",
-				"HexadecimalEscapeSequence", "StringLiteral", "EncodingPrefix", "SCharSequence",
-				"SChar", "Whitespace", "Newline", "BlockComment", "LineComment"
+				"HexadecimalEscapeSequence", "SimpleStringLiteral", "EncodingPrefix",
+				"SCharSequence", "SChar", "Whitespace", "Newline", "BlockComment", "LineComment"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -115,7 +116,7 @@ public class ArgCLexer extends Lexer {
 				"StarAssign", "DivAssign", "ModAssign", "PlusAssign", "MinusAssign",
 				"LeftShiftAssign", "RightShiftAssign", "AndAssign", "XorAssign", "OrAssign",
 				"Equal", "NotEqual", "Arrow", "Dot", "Ellipsis", "Constant", "Identifier",
-				"DigitSequence", "StringLiteral", "Whitespace", "Newline", "BlockComment",
+				"DigitSequence", "SimpleStringLiteral", "Whitespace", "Newline", "BlockComment",
 				"LineComment"
 		};
 	}

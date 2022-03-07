@@ -108,26 +108,47 @@ public interface ArgCListener extends ParseTreeListener {
 	 */
 	void exitDeclarationSpecifier(ArgCParser.DeclarationSpecifierContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ArgCParser#primaryExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrimaryExpression(ArgCParser.PrimaryExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgCParser#primaryExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrimaryExpression(ArgCParser.PrimaryExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ArgCParser#variableUsage}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariableUsage(ArgCParser.VariableUsageContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgCParser#variableUsage}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariableUsage(ArgCParser.VariableUsageContext ctx);
-	/**
+     * Enter a parse tree produced by {@link ArgCParser#primaryExpression}.
+     * @param ctx the parse tree
+     */
+    void enterPrimaryExpression(ArgCParser.PrimaryExpressionContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgCParser#primaryExpression}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitPrimaryExpression(ArgCParser.PrimaryExpressionContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link ArgCParser#stringLiteral}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterStringLiteral(ArgCParser.StringLiteralContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgCParser#stringLiteral}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitStringLiteral(ArgCParser.StringLiteralContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link ArgCParser#variableUsage}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterVariableUsage(ArgCParser.VariableUsageContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgCParser#variableUsage}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitVariableUsage(ArgCParser.VariableUsageContext ctx);
+
+    /**
 	 * Enter a parse tree produced by {@link ArgCParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
