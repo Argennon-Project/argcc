@@ -98,17 +98,21 @@ public interface ArgCListener extends ParseTreeListener {
 	 */
 	void exitVariableDeclarator(ArgCParser.VariableDeclaratorContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ArgCParser#declarationSpecifier}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclarationSpecifier(ArgCParser.DeclarationSpecifierContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgCParser#declarationSpecifier}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclarationSpecifier(ArgCParser.DeclarationSpecifierContext ctx);
-	/**
+     * Enter a parse tree produced by {@link ArgCParser#declarationSpecifier}.
+     * @param ctx the parse tree
+     */
+    void enterDeclarationSpecifier(ArgCParser.DeclarationSpecifierContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgCParser#declarationSpecifier}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitDeclarationSpecifier(ArgCParser.DeclarationSpecifierContext ctx);
+
+    /**
      * Enter a parse tree produced by {@link ArgCParser#primaryExpression}.
+     *
      * @param ctx the parse tree
      */
     void enterPrimaryExpression(ArgCParser.PrimaryExpressionContext ctx);
@@ -149,16 +153,20 @@ public interface ArgCListener extends ParseTreeListener {
     void exitVariableUsage(ArgCParser.VariableUsageContext ctx);
 
     /**
-	 * Enter a parse tree produced by {@link ArgCParser#functionCall}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunctionCall(ArgCParser.FunctionCallContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgCParser#functionCall}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunctionCall(ArgCParser.FunctionCallContext ctx);
-	/**
+     * Enter a parse tree produced by {@link ArgCParser#functionCall}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterFunctionCall(ArgCParser.FunctionCallContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgCParser#functionCall}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitFunctionCall(ArgCParser.FunctionCallContext ctx);
+
+    /**
 	 * Enter a parse tree produced by {@link ArgCParser#postfixExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -375,26 +383,47 @@ public interface ArgCListener extends ParseTreeListener {
 	void enterClassType(ArgCParser.ClassTypeContext ctx);
 	/**
 	 * Exit a parse tree produced by {@link ArgCParser#classType}.
-	 * @param ctx the parse tree
-	 */
-	void exitClassType(ArgCParser.ClassTypeContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ArgCParser#typeSpecifier}.
-	 * @param ctx the parse tree
-	 */
-	void enterTypeSpecifier(ArgCParser.TypeSpecifierContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgCParser#typeSpecifier}.
-	 * @param ctx the parse tree
-	 */
-	void exitTypeSpecifier(ArgCParser.TypeSpecifierContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ArgCParser#structOrUnionSpecifier}.
-	 * @param ctx the parse tree
-	 */
-	void enterStructOrUnionSpecifier(ArgCParser.StructOrUnionSpecifierContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgCParser#structOrUnionSpecifier}.
+     * @param ctx the parse tree
+     */
+    void exitClassType(ArgCParser.ClassTypeContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link ArgCParser#typeSpecifier}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterTypeSpecifier(ArgCParser.TypeSpecifierContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgCParser#typeSpecifier}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitTypeSpecifier(ArgCParser.TypeSpecifierContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link ArgCParser#arraySpecifier}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterArraySpecifier(ArgCParser.ArraySpecifierContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgCParser#arraySpecifier}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitArraySpecifier(ArgCParser.ArraySpecifierContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link ArgCParser#structOrUnionSpecifier}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterStructOrUnionSpecifier(ArgCParser.StructOrUnionSpecifierContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgCParser#structOrUnionSpecifier}.
 	 * @param ctx the parse tree
 	 */
 	void exitStructOrUnionSpecifier(ArgCParser.StructOrUnionSpecifierContext ctx);

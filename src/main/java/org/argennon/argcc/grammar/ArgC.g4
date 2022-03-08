@@ -211,8 +211,12 @@ typeSpecifier
     :   primitiveType
     |   classType
     |   structOrUnionSpecifier
-    |   Array '<' primitiveType ',' constantExpression '>'
+    |   arraySpecifier
     |   StringBuffer '<' constantExpression '>'
+    ;
+
+arraySpecifier
+    :   primitiveType ('[' constantExpression ']')+
     ;
 
 structOrUnionSpecifier
@@ -227,7 +231,6 @@ structOrUnion
 structDeclarationList
     :   initializedDeclaration+
     ;
-
 
 specifierQualifierList
     :   (typeSpecifier| typeQualifier) specifierQualifierList?
@@ -349,7 +352,6 @@ Float64 : 'float64';
 Float128 : 'float128';
 Bool : 'bool';
 
-Array : 'array_c';
 String : 'string_view_c';
 StringBuffer : 'string_buffer_c';
 PublicKey : 'publickey_c';

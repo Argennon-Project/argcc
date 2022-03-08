@@ -66,6 +66,7 @@ class InsertNameSpaceListener extends ArgCBaseListener {
     public static final String NAMESPACE = "argc::";
     public static final String VAR_PREFIX = "argc_0_";
     public static final String STRING_CLASS = "string_view_c";
+    public static final String ARRAY_CLASS = "array_c<";
     TokenStreamRewriter rewriter;
 
     public InsertNameSpaceListener(TokenStream tokens) {
@@ -90,5 +91,18 @@ class InsertNameSpaceListener extends ArgCBaseListener {
     @Override
     public void exitStringLiteral(ArgCParser.StringLiteralContext ctx) {
         rewriter.replace(ctx.start, ctx.stop, STRING_CLASS + "(" + ctx.getText() + ")");
+    }
+
+    @Override
+    public void exitArraySpecifier(ArgCParser.ArraySpecifierContext ctx) {
+        StringBuilder cppSpecifier = new StringBuilder();
+        for (int i = 0; i < ctx.constantExpression().size(); i++) {
+            cppSpecifier.append(ARRAY_CLASS);
+        }
+        cppSpecifier.append(ctx.primitiveType().getText());
+        for (int i = ctx.constantExpression().size() - 1; i >= 0; i--) {
+            cppSpecifier.append(",").append(ctx.constantExpression(i).getText()).append(">");
+        }
+        rewriter.replace(ctx.start, ctx.stop, cppSpecifier);
     }
 }

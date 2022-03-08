@@ -6,7 +6,7 @@ namespace argennon::ascee::argc {
 
 
 bool create_normal_account(long_id argc_0_address, publickey_c& argc_0_pk, signature_c& argc_0_proof) {
-    string_view_c argc_0_str = string_view_c("789")[450];
+    array_c<array_c<array_c<int32,3>,5>,2> argc_0_array = {};
     if (!argc::validate_pk(argc_0_pk, argc_0_proof)) return false;
     argc::load_account_chunk(argc_0_address, 0);
     if (!argc::invalid(0, 2)) return false;

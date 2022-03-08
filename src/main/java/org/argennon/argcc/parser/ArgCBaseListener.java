@@ -683,6 +683,24 @@ public class ArgCBaseListener implements ArgCListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
+    public void enterArraySpecifier(ArgCParser.ArraySpecifierContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void exitArraySpecifier(ArgCParser.ArraySpecifierContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
     public void enterStructOrUnionSpecifier(ArgCParser.StructOrUnionSpecifierContext ctx) {
     }
 
@@ -1145,15 +1163,18 @@ public class ArgCBaseListener implements ArgCListener {
     public void exitJumpStatement(ArgCParser.JumpStatementContext ctx) {
     }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterEveryRule(ParserRuleContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void enterEveryRule(ParserRuleContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitEveryRule(ParserRuleContext ctx) { }
