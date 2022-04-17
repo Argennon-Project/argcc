@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 
 public class Main {
-    static final String CMD_FORMAT = "g++ -O3 -Wall -Warray-bounds -Wno-unused -Werror -std=c++2a %s -fPIC -shared -o %s %s";
+    static final String CMD_FORMAT = "g++ -O3 -Wall -Wconversion -Warray-bounds -Wno-unused -Werror -std=c++2a %s -fPIC -shared -o %s %s";
 
     public static void main(String[] args) throws IOException {
         String includePath = args[0];
